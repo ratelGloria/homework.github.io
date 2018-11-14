@@ -162,7 +162,7 @@ $(document).ready(function(){
     $("#username").css({
         "background-color":"white"
     })
-    $("#username,#password,#verify").on("focus",(function(){
+    $("#username").focus(function(){
           $("#username").css({
               "border":"1px solid red"
           })
