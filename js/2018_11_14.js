@@ -167,7 +167,7 @@ $(document).ready(function(){
               "border":"1px solid red"
           })
 
-    }))
+    })
     $("#password").focus(function(){
         $("#password").css({
             "border":"1px solid red"
