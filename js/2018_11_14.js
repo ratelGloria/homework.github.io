@@ -146,9 +146,9 @@ $(document).ready(function(){
             $("#d5").css("background-color","gray")
         }
     })
-
+    $("#username,#password").css("width","120px")
     $("#table2 ").css({
-        "width":"120px",
+        "width":"260px",
         "height":"60px",
         "color":"black",
         "background-color":"white"
@@ -159,27 +159,65 @@ $(document).ready(function(){
         "color":"black",
         "background-color":"white"
     })
-    $("#username").css({
-        "background-color":"white"
+    $("#username,#verify,#password").css({
+        "background-color":"white",
+        "border":"0"
     })
-    $("#username").focus(function(){
-          $("#username").css({
-              "border":"1px solid red"
-          })
+    $("#table2 td:eq(0)").css({
+       "width":"80"
+    })
+    $("#verify").css("width","50px")
+    $("#username").on({
+        focus:function(){
+            $("#username").css(
+                "border","2px solid red"
+            )},
+            blur:function(){
+                $("#username").css(
+                    "border","0px"
+                )
+    }
+    })
+    $("#pswVerify").append("<span>忘记密码？</span>");
 
+    $("span").css({
+        "color":"blue",
+        "font-size":"10px"
     })
-    $("#password").focus(function(){
-        $("#password").css({
-            "border":"1px solid red"
-        })
+    $("#table2 td:eq(2)").css({
+        "width":"50px",
+        "height":"20px"
+    })
+    $("#password").on({
+        focus:function(){
+            $("#password").css(
+                "border","2px solid red"
+            )},
+        blur:function(){
+            $("#password").css(
+                "border","0px"
+            )
+        }
+    })
 
+    $("#verify").on({
+        focus:function(){
+            $("#verify").css(
+                "border","2px solid red"
+            )},
+        blur:function(){
+            $("#verify").css(
+                "border","0px"
+            )
+        }
     })
-    $("#verify").focus(function(){
-        $("#verify").css({
-            "border":"1px solid red"
-        })
+    $("#submit1").css({
+        "background-color":"orange",
+        "color":"white",
+        "border":"0px"
+    })
 
-    })
+
 
 
 
