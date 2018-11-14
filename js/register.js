@@ -6,7 +6,7 @@ window.onload = function () {
     var phone = document.getElementById("phone");
     var emailNum = document.getElementById("emailNum");
     var userID = document.getElementById("userID");
-
+    var sub1 = document.getElementById("submit1");
     function toRed(sName) {
         document.getElementById(sName).style.color = "red";
     }
@@ -22,162 +22,117 @@ window.onload = function () {
     function toOk(sName) {
         document.getElementById(sName).innerText = "可以使用";
     }
-
+    var pwd;
     var result;
     var user;
-    userName.onblur = function () {
-        result = this.value;
-        user = "用户名";
-        console.log(result);
+    var userNameB;
+    var passWordB;
+    var checkPasswordB;
+    var emailB;
+    var phoneB;
+    var emaileNumB;
+    var userIDB;
+    nameBoolean = false;
+
+    function methodOnblur(name,result,divName,regExp1,nameBoolean){
         if (null != result) {
-            var regExp1 = /[\w]{6,18}/;
+            var regExp1 = regExp1;
             var resultEng = regExp1.test(result);
             if (!resultEng) {
-                toWarring("s1", user);
-                toRed("s1");
+                toWarring(divName, name);
+                toRed(divName);
+                this.nameBoolean = false;
             } else {
-                console.log("else");
-                toOk("s1");
-                toGreen("s1");
+                toOk(divName);
+                toGreen(divName);
+                this.nameBoolean = true;
             }
         } else if (null === result) {
-            console.log("else if");
-            toWarring("s1", user);
-            toRed("s1");
+            toWarring(divName, name);
+            toRed(divName);
+            this.nameBoolean = false;
         }
-       var pwd;
+        console.log("hh"+nameBoolean);
+    }
+
+    userName.onblur = function () {
+        var regExp1 = /[\w]{6,18}/;
+        user = "用户名";
+        result = this.value;
+        methodOnblur(user,result,"s1",regExp1,userNameB);
+         userNameB = nameBoolean;
+    }
+
         passWord.onblur = function () {
             result = this.value;
             console.log(result);
             user = "密码";
-            if (null != result) {
-                var regExp1 = /[0-9a-z]{6,18}/;
-                var resultEng = regExp1.test(result);
-                if (!resultEng) {
-                    toWarring("s2", user);
-                    toRed("s2");
-                } else {
-                    toOk("s2");
-                    toGreen("s2");
-                    this.pwd = result;
-
-                }
-            } else if (null === result) {
-                toWarring("s2", user);
-                toRed("s2");
-            }
+            var regExp1 = /[0-9a-z]{6,18}/;
+            methodOnblur(user,result,"s2",regExp1,userNameB);
+            passWordB = nameBoolean;
         }
 
         checkPassWord.onblur = function () {
-
             result = this.value;
             console.log(result);
+            console.log(pwd);
             user = "密码";
 
-            if (null != result && this.value == pwd) {
+            if (null != result &&  pwd == result ) {
                 document.getElementById("s3").innerText = "密码正确";
                 toGreen("s3");
+                checkPasswordB = true;
             }
             else
             {
                  toWarring("s3", user);
                 toRed("s3");
+                checkPasswordB = false;
             }
         }
-    }
-
        email.onblur =function() {
            result = this.value;
            console.log(result);
            user = "邮箱";
-           if (null != result) {
-               var regExp1 = /[0-9a-z]{5,11}@(qq|163)(\.com|\.cn)/;
-               var resultEng = regExp1.test(result);
-               if (!resultEng) {
-                   toWarring("s4", user);
-                   toRed("s4");
-               } else {
-                   toOk("s4");
-                   toGreen("s4");
-               }
-           } else if (null === result) {
-               toWarring("s4", user);
-               toRed("s4");
-           }
+           var regExp1 = /[0-9a-z]{5,11}@(qq|163)(\.com|\.cn)/;
+           methodOnblur(user,result,"s4",regExp1,emailB);
+           emailB = nameBoolean;
+
        }
 
        phone.onblur =function() {
            result = this.value;
            console.log(result);
            user = "手机号";
-           if (null != result) {
-               var regExp1 = /[1-9][0-9]{10}/;
-               var resultEng = regExp1.test(result);
-               if (!resultEng) {
-                   toWarring("s5", user);
-                   toRed("s5");
-               } else {
-                   toOk("s5");
-                   toGreen("s5");
-               }
-           } else if (null === result) {
-               toWarring("s5", user);
-               toRed("s5");
-           }
+           var regExp1 = /[1-9][0-9]{10}/;
+           methodOnblur(user,result,"s5",regExp1,phoneB);
+           phoneB = nameBoolean;
+
        }
 
        emailNum.onblur =function() {
            result = this.value;
            console.log(result);
            user = "邮编";
-           if (null != result) {
-               var regExp1 = /[0-9]{6}/;
-               var resultEng = regExp1.test(result);
-               if (!resultEng) {
-                   toWarring("s6", user);
-                   toRed("s6");
-               } else {
-                   toOk("s6");
-                   toGreen("s6");
-               }
-           } else if (null === result) {
-               toWarring("s6", user);
-               toRed("s6");
-           }
+           var regExp1 = /[0-9]{6}/;
+           methodOnblur(user,result,"s6",regExp1,emaileNumB);
+           emaileNumB = nameBoolean;
        }
 
        userID.onblur =function() {
            result = this.value;
            console.log(result);
            user = "身份证号";
-           if (null != result) {
-               var regExp1 = /[1-9][0-9]{5}[1][0-9]{3}[0-1][0-9][0-3][0-9][0-9]{3}[0-9a-z]/;
-               var resultEng = regExp1.test(result);
-               if (!resultEng) {
-                   toWarring("s7", user);
-                   toRed("s7");
-               } else {
-                   toOk("s7");
-                   toGreen("s7");
-               }
-           } else if (null === result) {
-               toWarring("s7", user);
-               toRed("s7");
-           }
+           var regExp1 = /[1-9][0-9]{5}[1][0-9]{3}[0-1][0-9][0-3][0-9][0-9]{3}[0-9a-z]/;
+           methodOnblur(user,result,"s7",regExp1,userIDB);
+           userIDB = nameBoolean;
        }
-
-
-
-
-
-           /*<span id = "s2">密码格式错误</span>
-           <span id = "s3">密码不匹配</span>
-           <span id = "s4">邮箱格式错误</span>
-           <span id = "s5">手机号格式错误</span>
-           <span id = "s6">邮编格式错误</span>
-           <span id = "s7">身份证号格式错误</span>*/
-
-
-
+    sub1.onclick = function(){
+        if(userNameB&&passWordB&&checkPasswordB){
+            alert("注册成功");
+        }else {
+            alert("注册失败");
+        }
+    }
 
 }
